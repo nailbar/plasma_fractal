@@ -40,7 +40,12 @@ function loop() {
     g_w.c.drawImage(document.getElementById('canvas'), 0, -5);
     
     // Draw one row
-    g_w.drawrow(g_p, g_w.map.width, 0, g_w.canvas.height - 10);
+    g_w.drawrow(
+        g_p, // Draw this row
+        g_w.map.width, // Draw the whole row
+        0, // No need to set ambient, default shadows aren't that dark
+        g_w.canvas.height + g_w.scale_z * 0.2 - 10 // Draw the row 10px from bottom, taking water level into account
+    );
     
     // Repeat with next row
     g_p++;

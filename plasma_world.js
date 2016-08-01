@@ -131,7 +131,7 @@ function plasma_world(canvas, width, height, scale_x, scale_y, scale_z) {
                 v.treesize = v.trees;
                 
                 // Much less trees after you get abouve the grassline
-                if(v.center > v.grassline) v.trees *= 0.3;
+                if(v.center > v.grassline) v.trees *= 0.5;
                 
                 // Check for forest areas
                 v.forest = this.pick_inter(
