@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+<title>Plasma fractal based landscape demo</title>
+<meta name='author' value='Martin Wikström'>
+<style type='text/css'>
+body, html {
+    margin: 0;
+    padding: 0;
+}
+canvas {
+    width: 100%;
+    height: 100%;
+    background-color: #354;
+    position: absolute;
+}
+</style>
+<script type='text/javascript' src='plasma_fractal.js'></script>
+<script type='text/javascript' src='plasma_world.js'></script>
+<script type='text/javascript'>
+var g_w;
+var g_p;
+function init() {
+    var canvas = document.getElementById('canvas');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    // Generate the world
+    g_w = new plasma_world(canvas, canvas.width / 10 + 1, (canvas.height + canvas.width / 4.0) / 5, 10, 5, canvas.width / 4.0);
+    g_p = 0;
+    g_dp = 0;
+    
+    // Start drawing
+    loop();
+}
+
+function loop() {
+    
+    // Shift the current picture one step up
+    g_w.c.drawImage(document.getElementById('canvas'), 0, -5);
+    
+    // Draw one row
+    g_w.drawrow(g_p, g_w.map.width, 0, g_w.canvas.height - 10);
+    
+    // Repeat with next row
+    g_p++;
+    setTimeout(loop, 50);
+}
+</script>
+</head>
+<body onload='init()'>
+<canvas id='canvas'></canvas>
+</body>
+</html>
